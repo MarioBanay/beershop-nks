@@ -1,8 +1,7 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import classes from './Card.css';
-import RoundIconButton from '../../RoundIconButton/RoundIconButton';
-import PopupComponent from '../../TestComponent/PopupComponent';
+import { RoundIconButton, Popup } from 'storybook-nks/dist';
 import * as actionTypes from '../../../store/actions';
 import addToChartIcon from '../../../assets/icons/PNG/plus.png';
 import infoIcon from '../../../assets/icons/PNG/info.png';
@@ -24,7 +23,8 @@ class Card extends Component {
     render() {
         return (
             <div className={classes.card}>
-                <RoundIconButton style={{ width: '33px' }}
+                
+                <RoundIconButton
                     //icon={this.props.fav ? starFull : starEmpty}
                     icon={this.props.iconFavorites}
                     clicked={() => this.addRemovefavoriteBeerHandler(this.props.id)}
@@ -32,12 +32,12 @@ class Card extends Component {
                 <RoundIconButton 
                     icon={addToChartIcon}
                     clicked={() => this.props.onAddToCart(this.props.id)} />
-                <PopupComponent popupText={this.props.description} >
+                <Popup popupText={this.props.description} >
                     <RoundIconButton
                         icon={infoIcon}
                     />
                     
-                </PopupComponent>
+                </Popup>
                 <img className={classes.beerImg} src={this.props.imgBeerUrl} />
                 <div className={classes.title}>
                     <h3>{this.props.name}</h3>
