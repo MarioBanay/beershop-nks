@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import classes from './NavigationMenu.css';
-import Hyperlink from '../HyperlinkButton/Hyperlink';
+import { Hyperlink } from 'storybook-nks/dist';
 import { Link } from 'react-router-dom';
 import { connect } from 'react-redux';
 

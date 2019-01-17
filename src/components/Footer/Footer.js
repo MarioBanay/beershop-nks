@@ -13,7 +13,7 @@ const footer = (props) => {
     return (
         <footer className={classes.Footer}>
             <ul>
-            <li>
+                <li>
                     <Icon
                         icon={twitterIcon}
                         link="https://twitter.com/" />
