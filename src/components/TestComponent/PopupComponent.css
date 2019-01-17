@@ -1,0 +1,42 @@
+.Container {
+    position: relative;
+    width: 30px;
+    height: 30px;
+    margin: 5px;
+    left: 80px;
+    display: -webkit-inline-box;
+}
+
+.Modal {
+    position: relative;
+    border: 1px solid #ccc;
+    box-shadow: 1px 1px 1px black;
+    padding: 5px;
+    box-sizing: border-box;
+    transition: all 0.3s ease-out;
+    border-radius: 5px;
+    color: white;
+    background-color: darkgray;
+    width: auto;
+    height: 200px;
+    text-align: center;
+    font-size: 8px;
+}
+
+
+.Component {
+    position: absolute;
+    left: -5px;
+    top: -5px;    
+}
+
+.Hide {
+    visibility: hidden;
+}
+
+@media (min-width: 600px) {
+    .Modal {
+        width: 200px;
+        left: calc(50% - 50px);
+    }
+}
