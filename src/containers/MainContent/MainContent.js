@@ -1,18 +1,36 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
-import { Header, NavigationMenu, Hyperlink, Footer, RoundIconButton } from 'storybook-nks/dist';
+import { Header, NavigationMenu, Hyperlink, Footer, RoundIconButton, Cards } from 'storybook-nks/dist';
 import { Link } from 'react-router-dom';
 import classes from './MainContent.css';
 import Logo from '../../assets/duff.png';
-import Cards from '../../components/Cards/Cards';
+// import Cards from '../../components/Cards/Cards';
 import twitterIcon from '../../assets/icons/PNG/twitter.png'
 import facebookIcon from '../../assets/icons/PNG/facebook.png'
 import gitHubIcon from '../../assets/icons/PNG/github.png'
 import instagramIcon from '../../assets/icons/PNG/instagram.png'
+import beersJson from '../../assets/beers.json';
+import IcoMoon from 'react-icomoon';
+import * as actionTypes from '../../store/actions';
 
-
+const iconStyle = {
+    width: '32px',
+    height: '32px'
+};
 
 class MainContent extends Component {
+
+    state = {
+        icon: false
+    }
+
+    addRemovefavoriteBeerHandler = (id) => {
+        let newArray = this.props.isFav.filter((el) => el.id === id);
+        if (newArray.length > 0) {
+            this.props.onRemoveFromFavorites(id)
+        } else
+            this.props.onAddToFavorites(id);
+    }
 
     render() {
 
@@ -21,7 +39,7 @@ class MainContent extends Component {
                 link: <Link to="/" >Home</Link>,
             },
             {
-                link: <Link to="/favorites" >Favorites ({this.props.fav.length})</Link>,
+                link: <Link to="/favorites" >Favorites ({this.props.isFav.length})</Link>,
             },
             {
                 link: <Link to="/shoppingCart" >Shopping Cart ({this.props.cart.length})</Link>,
@@ -79,7 +97,21 @@ class MainContent extends Component {
 
                 </div>
                 <div >
-                    <Cards />
+                    <Cards
+                        beers={beersJson}
+
+                        favoriteIconEmpty={<IcoMoon icon="star-empty" color="orange" style={iconStyle} />}
+                        // favoriteIconFull={<IcoMoon icon="star-full" color="orange" style={iconStyle} />}
+                        // favoriteIconEmpty={<IcoMoon icon="star-empty" color="orange" style={iconStyle} />}
+                        clickedOnFavorites={(id) => this.addRemovefavoriteBeerHandler(id)}
+
+
+                        addToCartIcon={<IcoMoon icon="plus" color="black" style={iconStyle} />}
+                        clickedOnAddToCart={(id) => this.props.onAddToCart(id)}
+
+                        infoIcon={<IcoMoon icon="info" color="black" style={iconStyle} />}
+                        // clickedOnInfo={action('clicked on info button')}
+                    />
                 </div>
                 <div className={classes.Menu}>
                     <NavigationMenu
@@ -99,9 +131,19 @@ class MainContent extends Component {
 
 const mapStateToProps = state => {
     return {
-        fav: state.fav.favData,
-        cart: state.fav.cartData
+        cart: state.fav.cartData,
+        fav: state.fav.beerData,
+        isFav: state.fav.favData
     };
 };
 
-export default connect(mapStateToProps)(MainContent);
+const mapDispatchToProps = dispatch => {
+    return {
+        onAddToFavorites: (id) => dispatch({ type: actionTypes.ADD_TO_FAVORITES, resultElId: id }),
+        onRemoveFromFavorites: (id) => dispatch({ type: actionTypes.REMOVE_FROM_FAVORITES, resultElId: id }),
+        onAddToCart: (id) => dispatch({ type: actionTypes.ADD_TO_CART, resultElId: id }),
+        onRemoveFromCart: (id) => dispatch({ type: actionTypes.REMOVE_FROM_CART, resultElId: id })
+    };
+};
+
+export default connect(mapStateToProps, mapDispatchToProps)(MainContent);
