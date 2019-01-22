@@ -1,18 +1,22 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
-import { Header, NavigationMenu, Hyperlink } from 'storybook-nks/dist';
+import { Header, NavigationMenu, Hyperlink, Footer, RoundIconButton } from 'storybook-nks/dist';
 import { Link } from 'react-router-dom';
 import classes from './MainContent.css';
 import Logo from '../../assets/duff.png';
 import Cards from '../../components/Cards/Cards';
-import Footer from '../../components/Footer/Footer';
+import twitterIcon from '../../assets/icons/PNG/twitter.png'
+import facebookIcon from '../../assets/icons/PNG/facebook.png'
+import gitHubIcon from '../../assets/icons/PNG/github.png'
+import instagramIcon from '../../assets/icons/PNG/instagram.png'
+
 
 
 class MainContent extends Component {
 
     render() {
 
-        let data = [
+        let navigationData = [
             {
                 link: <Link to="/" >Home</Link>,
             },
@@ -30,7 +34,41 @@ class MainContent extends Component {
                     link="https://github.com/MarioBanay/beershop-nks"
                     text="Source Code" />
             }
+        ];
 
+        let footerData = [
+            {
+                link: <Hyperlink
+                    link="https://twitter.com/"
+                    text="twitter" />,
+                icon: <RoundIconButton
+                    icon={twitterIcon}
+                    link="https://twitter.com/" />
+            },
+            {
+                link: <Hyperlink
+                    link="https://facebook.com/"
+                    text="facebook" />,
+                icon: <RoundIconButton
+                    icon={facebookIcon}
+                    link="https://facebook.com/" />
+            },
+            {
+                link: <Hyperlink
+                    link="https://github.com/"
+                    text="GitHub" />,
+                icon: <RoundIconButton
+                    icon={gitHubIcon}
+                    link="https://github.com/" />
+            },
+            {
+                link: <Hyperlink
+                    link="https://instagram.com/"
+                    text="instagram" />,
+                icon: <RoundIconButton
+                    icon={instagramIcon}
+                    link="https://instagram.com/" />
+            }
 
         ];
         return (
@@ -40,16 +78,18 @@ class MainContent extends Component {
                         logo={Logo} />
 
                 </div>
-                <div className={classes.Cards}>
+                <div >
                     <Cards />
                 </div>
                 <div className={classes.Menu}>
                     <NavigationMenu
-                        data={data}
+                        data={navigationData}
                     />
                 </div>
                 <div className={classes.Footer}>
-                    <Footer />
+                    <Footer
+                        data={footerData}
+                    />
                 </div>
 
             </div>

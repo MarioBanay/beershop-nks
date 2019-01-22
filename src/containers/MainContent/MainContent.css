@@ -1,7 +1,7 @@
 .MainContent {
     margin: 0px auto;
     padding: 0px;
-    width: 1230px;
+    width: 1250px;
 }
 
 .Cards {
@@ -10,8 +10,7 @@
 }
 
 .Menu, .Footer {
-    margin-top: 10px;
-    margin-bottom: 10px;
-    width: 300px;
+    width: 340px;
     float: left;
+    margin: 5px 0px;
 }

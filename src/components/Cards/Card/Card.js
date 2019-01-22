@@ -26,7 +26,7 @@ class Card extends Component {
                 
                 <RoundIconButton
                     //icon={this.props.fav ? starFull : starEmpty}
-                    icon={this.props.iconFavorites}
+                    icon={this.props.favoriteIcon}
                     clicked={() => this.addRemovefavoriteBeerHandler(this.props.id)}
                 />
                 <RoundIconButton 
