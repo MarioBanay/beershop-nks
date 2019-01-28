@@ -1,14 +1,9 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
-import { Header, NavigationMenu, Hyperlink, Footer, RoundIconButton, Cards } from 'storybook-nks/dist';
 import { Link } from 'react-router-dom';
+import { Header, NavigationMenu, Hyperlink, Footer, RoundIconButton, Cards } from 'storybook-nks/dist';
 import classes from './MainContent.css';
 import Logo from '../../assets/duff.png';
-// import Cards from '../../components/Cards/Cards';
-import twitterIcon from '../../assets/icons/PNG/twitter.png'
-import facebookIcon from '../../assets/icons/PNG/facebook.png'
-import gitHubIcon from '../../assets/icons/PNG/github.png'
-import instagramIcon from '../../assets/icons/PNG/instagram.png'
 import beersJson from '../../assets/beers.json';
 import IcoMoon from 'react-icomoon';
 import * as actionTypes from '../../store/actions';
@@ -60,7 +55,7 @@ class MainContent extends Component {
                     link="https://twitter.com/"
                     text="twitter" />,
                 icon: <RoundIconButton
-                    icon={twitterIcon}
+                    icon={<IcoMoon icon="twitter" color="black" style={iconStyle} />}
                     link="https://twitter.com/" />
             },
             {
@@ -68,7 +63,7 @@ class MainContent extends Component {
                     link="https://facebook.com/"
                     text="facebook" />,
                 icon: <RoundIconButton
-                    icon={facebookIcon}
+                    icon={<IcoMoon icon="facebook" color="black" style={iconStyle} />}
                     link="https://facebook.com/" />
             },
             {
@@ -76,7 +71,7 @@ class MainContent extends Component {
                     link="https://github.com/"
                     text="GitHub" />,
                 icon: <RoundIconButton
-                    icon={gitHubIcon}
+                    icon={<IcoMoon icon="github" color="black" style={iconStyle} />}
                     link="https://github.com/" />
             },
             {
@@ -84,11 +79,12 @@ class MainContent extends Component {
                     link="https://instagram.com/"
                     text="instagram" />,
                 icon: <RoundIconButton
-                    icon={instagramIcon}
+                    icon={<IcoMoon icon="instagram" color="black" style={iconStyle} />}
                     link="https://instagram.com/" />
             }
-
+        
         ];
+
         return (
             <div className={classes.MainContent}>
                 <div>
@@ -96,13 +92,13 @@ class MainContent extends Component {
                         logo={Logo} />
 
                 </div>
-                <div >
+                <div className={classes.Cards}>
                     <Cards
                         beers={beersJson}
+                        favoriteBeers={this.props.isFav}
 
+                        favoriteIconFull={<IcoMoon icon="star-full" color="orange" style={iconStyle} />}
                         favoriteIconEmpty={<IcoMoon icon="star-empty" color="orange" style={iconStyle} />}
-                        // favoriteIconFull={<IcoMoon icon="star-full" color="orange" style={iconStyle} />}
-                        // favoriteIconEmpty={<IcoMoon icon="star-empty" color="orange" style={iconStyle} />}
                         clickedOnFavorites={(id) => this.addRemovefavoriteBeerHandler(id)}
 
 
@@ -110,10 +106,12 @@ class MainContent extends Component {
                         clickedOnAddToCart={(id) => this.props.onAddToCart(id)}
 
                         infoIcon={<IcoMoon icon="info" color="black" style={iconStyle} />}
-                        // clickedOnInfo={action('clicked on info button')}
+
+                    // clickedOnInfo={action('clicked on info button')}
+                    // clickedOnSide={true}
                     />
                 </div>
-                <div className={classes.Menu}>
+                <div className={classes.NavigationMenu}>
                     <NavigationMenu
                         data={navigationData}
                     />

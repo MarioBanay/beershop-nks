@@ -1,5 +1,7 @@
+import React from 'react';
 import * as actionTypes from '../actions';
 import beers from '../../assets/beers.json';
+import IcoMoon from 'react-icomoon';
 import { compose } from 'redux';
 
 const initialState = {
@@ -7,6 +9,14 @@ const initialState = {
     favData: [],
     cartData: [],
 }
+
+const star = {
+    width: '16px',
+    height: '16px'
+};
+
+let crossIcon = <IcoMoon icon="cross" color="grey" style={star} />
+
 
 const favoritesReducer = (state = initialState, action) => {
     switch (action.type) {
@@ -17,9 +27,10 @@ const favoritesReducer = (state = initialState, action) => {
                 favData: state.favData.concat(
                     {
                         id: newArray[0].id,
-                        image_url: newArray[0].image_url,
-                        name: newArray[0].name
-                        
+                        image: newArray[0].image_url,
+                        name: newArray[0].name,
+                        description: newArray[0].description,
+                        button: crossIcon
                     })
             }
 
@@ -35,9 +46,6 @@ const favoritesReducer = (state = initialState, action) => {
             let index = state.cartData.findIndex(item => item.id === action.resultElId);
             let itemToAdd = state.beerData.filter((el) => el.id === action.resultElId);
             if (index > -1) {
-                console.log("new Qty: " + action.newQty);
-                console.log("resultElId: " + action.resultElId);
-
                 let baseCart = state.cartData.filter((el) => el.id !== action.resultElId);
                 baseCart.splice(index, 0,
                     {

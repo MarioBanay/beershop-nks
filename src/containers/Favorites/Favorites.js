@@ -1,12 +1,11 @@
 import React, { Component } from 'react';
-import Header from '../../components/Header/Header';
 import Logo from '../../assets/duff.png';
-import { Table, Button } from 'storybook-nks/dist';
-import NavigationMenu from '../../components/NavigationMenu/NavigationMenu';
+import { Table, Header, NavigationMenu, Hyperlink } from 'storybook-nks/dist';
 import Footer from '../../components/Footer/Footer';
 import { connect } from 'react-redux';
 import * as actionTypes from '../../store/actions';
-import CrossIcon from '../../assets/icons/PNG/cross.png';
+import { Link } from 'react-router-dom';
+import classes from './favorites.css';
 
 class Favorites extends Component {
 
@@ -22,10 +21,10 @@ class Favorites extends Component {
                 name: 'Beer name'
             },
             {
-                name: 'Quantity'
+                name: 'Description'
             },
             {
-                name: ' '
+                name: 'Remove'
             }
         ];
         const tableData = [
@@ -37,12 +36,43 @@ class Favorites extends Component {
                 button: ''
             }
         ];
+
+        let navigationData = [
+            {
+                link: <Link to="/" >Home</Link>,
+            },
+            {
+                link: <Link to="/favorites" >Favorites ({this.props.isFav.length})</Link>,
+            },
+            {
+                link: <Link to="/shoppingCart" >Shopping Cart ({this.props.cart.length})</Link>,
+            },
+            {
+                link: <Link to="/about" >About</Link>,
+            },
+            {
+                link: <Hyperlink
+                    link="https://github.com/MarioBanay/beershop-nks"
+                    text="Source Code" />
+            }
+        ];
+
         return (
-            <div>
-                <Header logo={Logo} />
-                <Table tableHeader={tableItems} tableData={this.props.fav}    />
-                <NavigationMenu />
-                <Footer />
+            <div className={classes.MainContent}>
+                <div className={classes.Header}>
+                    <Header logo={Logo} />
+                </div>
+                <div className={classes.Table}>
+                    <Table 
+                    tableHeader={tableItems} 
+                    tableData={this.props.fav}
+                    clickedOnFavorites={(id) => this.props.onRemoveFromFavorites(id)} />
+                </div>
+                <div className={classes.NavigationMenu}>
+                    <NavigationMenu
+                        data={navigationData}
+                    />
+                </div>
             </div>
         );
     }
@@ -50,13 +80,16 @@ class Favorites extends Component {
 
 const mapStateToProps = state => {
     return {
-        fav: state.fav.favData
+        fav: state.fav.favData,
+        isFav: state.fav.favData,
+        cart: state.fav.cartData,
     };
 };
 
 const mapDispatchToProps = dispatch => {
     return {
-        onAddToFavorites: () => dispatch({ type: actionTypes.ADD_TO_FAVORITES })
+        onAddToFavorites: () => dispatch({ type: actionTypes.ADD_TO_FAVORITES }),
+        onRemoveFromFavorites: (id) => dispatch({ type: actionTypes.REMOVE_FROM_FAVORITES, resultElId: id })
     };
 };
 

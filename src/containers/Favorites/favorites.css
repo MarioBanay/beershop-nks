@@ -5,19 +5,26 @@
     width: 1380px;
 }
 
-.Cards {
-    width: 1014px;
-    float: left;
+
+.Header {
+
 }
 
-.NavigationMenu, .Footer {
+.Table {
+    width: 1014px;
+    float: left;
+    margin-left: 5px;
+    margin-top: 5px;
+}
+
+.NavigationMenu {
     position: relative;
     left: 20px;
     width: 340px;
     float: left;
+    left: 20px;
 }
 
-.NavigationMenu {
-    top: 5px;
-    height: 316px;
+.Footer {
+
 }
