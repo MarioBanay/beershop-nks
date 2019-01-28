@@ -1,0 +1,30 @@
+.MainContent {
+    position: relative;
+    margin: 0px auto;
+    padding: 0px;
+    width: 1380px;
+}
+
+
+.Header {
+
+}
+
+.Table {
+    width: 1014px;
+    float: left;
+    margin-left: 5px;
+    margin-top: 5px;
+}
+
+.NavigationMenu {
+    position: relative;
+    left: 20px;
+    width: 340px;
+    float: left;
+    left: 20px;
+}
+
+.Footer {
+
+}

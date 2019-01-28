@@ -1,13 +1,22 @@
 import React, { Component } from 'react';
-import Header from '../../components/Header/Header';
+import { Header, NavigationMenu, Hyperlink, Table2 } from 'storybook-nks/dist';
 import Logo from '../../assets/duff.png';
 import SimpleTable from '../../components/SimpleTable/SimpleTable';
-import NavigationMenu from '../../components/NavigationMenu/NavigationMenu';
-import Footer from '../../components/Footer/Footer';
 import { connect } from 'react-redux';
 import * as actionTypes from '../../store/actions';
+import { Link } from 'react-router-dom';
+import classes from './shoppingCart.css';
 
 class ShoppingCart extends Component {
+
+    checkQuantityHandler = (qty, id) => {
+        console.log("from check quantity qty: " + qty.target.value);
+        console.log("from check quantity id: " + id);
+        if (qty.target.value == 0) {
+            this.props.onRemoveFromCart(id);
+            console.log("radi");
+        }
+    }
 
     state = {
         header: [
@@ -30,26 +39,85 @@ class ShoppingCart extends Component {
     };
 
     render() {
+        let navigationData = [
+            {
+                link: <Link to="/" >Home</Link>,
+            },
+            {
+                link: <Link to="/favorites" >Favorites ({this.props.isFav.length})</Link>,
+            },
+            {
+                link: <Link to="/shoppingCart" >Shopping Cart ({this.props.cart.length})</Link>,
+            },
+            {
+                link: <Link to="/about" >About</Link>,
+            },
+            {
+                link: <Hyperlink
+                    link="https://github.com/MarioBanay/beershop-nks"
+                    text="Source Code" />
+            }
+        ];
+
+        const tableItems = [
+            {
+                name: 'No.'
+            },
+            {
+                name: 'Image'
+            },
+            {
+                name: 'Beer name'
+            },
+            {
+                name: 'Description'
+            },
+            {
+                name: 'Quantity'
+            },
+
+            {
+                name: 'Remove'
+            }
+        ];
+
+
         console.log("cartData polje: " + this.props.cart)
         return (
-            <div>
-                <Header logo={Logo} />
-                <SimpleTable favor={false} head={this.state.header}  data={this.props.cart} />
-                <NavigationMenu />
-                <Footer />
+            <div className={classes.MainContent}>
+                <div className={classes.Header}>
+                    <Header logo={Logo} />
+                </div>
+                {/*                 <SimpleTable favor={false} head={this.state.header} data={this.props.cart} />
+ */}                <div className={classes.Table}>
+                    <Table2
+                        tableHeader={tableItems}
+                        tableData={this.props.cart}
+                        clickedOnFavorites={(id) => this.props.onRemoveFromCart(id)}
+                        enteredQuantity={(qty, id) => this.checkQuantityHandler(qty, id)}
+                    />
+                </div>
+                <div className={classes.NavigationMenu}>
+                    <NavigationMenu
+                        data={navigationData}
+                    />
+                </div>
             </div>
         );
     }
 }
 const mapStateToProps = state => {
     return {
-        cart: state.fav.cartData
+        cart: state.fav.cartData,
+        isFav: state.fav.favData,
+        fav: state.fav.favData,
     };
 };
 
 const mapDispatchToProps = dispatch => {
     return {
-        onAddToCart: () => dispatch({ type: actionTypes.ADD_TO_CART })
+        onAddToCart: () => dispatch({ type: actionTypes.ADD_TO_CART }),
+        onRemoveFromCart: (id) => dispatch({ type: actionTypes.REMOVE_FROM_CART, resultElId: id })
     };
 };
 

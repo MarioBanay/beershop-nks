@@ -50,9 +50,11 @@ const favoritesReducer = (state = initialState, action) => {
                 baseCart.splice(index, 0,
                     {
                         id: itemToAdd[0].id,
-                        image_url: itemToAdd[0].image_url,
+                        image: itemToAdd[0].image_url,
                         name: itemToAdd[0].name,
-                        qty: action.newQty
+                        description: itemToAdd[0].description,
+                        qty: 1,
+                        button: crossIcon
                     });
 
                 return {
@@ -67,9 +69,11 @@ const favoritesReducer = (state = initialState, action) => {
                     cartData: state.cartData.concat(
                         {
                             id: itemToAdd[0].id,
-                            image_url: itemToAdd[0].image_url,
+                            image: itemToAdd[0].image_url,
                             name: itemToAdd[0].name,
-                            qty: 1
+                            description: itemToAdd[0].description,
+                            qty: 1,
+                            button: crossIcon
                         })
                 }
             }

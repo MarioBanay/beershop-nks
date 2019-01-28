@@ -66,7 +66,8 @@ class Favorites extends Component {
                     <Table 
                     tableHeader={tableItems} 
                     tableData={this.props.fav}
-                    clickedOnFavorites={(id) => this.props.onRemoveFromFavorites(id)} />
+                    clickedOnFavorites={(id) => this.props.onRemoveFromFavorites(id)} 
+                    />
                 </div>
                 <div className={classes.NavigationMenu}>
                     <NavigationMenu
