@@ -1,9 +1,0 @@
-* {
-    box-sizing: border-box;
-}
-
-.main {
-    width: 1000px;
-    -webkit-column-width: 235px;
-    -webkit-column-gap: 10px;
-}

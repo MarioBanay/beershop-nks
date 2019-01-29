@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import { Link } from 'react-router-dom';
-import { Header, NavigationMenu, Hyperlink, Footer, RoundIconButton, Cards, MainContent } from 'storybook-nks/dist';
+import { Hyperlink, RoundIconButton, MainContent } from 'storybook-nks/dist';
 import classes from './MainContent.css';
 import Logo from '../../assets/duff.png';
 import beersJson from '../../assets/beers.json';

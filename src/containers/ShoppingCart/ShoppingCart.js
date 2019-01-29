@@ -1,7 +1,6 @@
 import React, { Component } from 'react';
 import { Header, NavigationMenu, Hyperlink, Table2 } from 'storybook-nks/dist';
 import Logo from '../../assets/duff.png';
-import SimpleTable from '../../components/SimpleTable/SimpleTable';
 import { connect } from 'react-redux';
 import * as actionTypes from '../../store/actions';
 import { Link } from 'react-router-dom';
