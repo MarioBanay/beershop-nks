@@ -26,15 +26,6 @@ class Favorites extends Component {
                 name: 'Remove'
             }
         ];
-        const tableData = [
-            {
-                id: '#',
-                image: 'Image',
-                name: 'Beer name',
-                quantity: '11',
-                button: ''
-            }
-        ];
 
         let navigationData = [
             {
@@ -67,7 +58,7 @@ class Favorites extends Component {
                         tableData={this.props.fav}
                         clickedOnFavorites={(id) => this.props.onRemoveFromFavorites(id)}
                         quantity={true}
-                    /> 
+                    />
                 </div>
                 <div className={classes.NavigationMenu}>
                     <NavigationMenu

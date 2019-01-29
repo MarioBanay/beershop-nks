@@ -2,7 +2,6 @@ import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import { Link } from 'react-router-dom';
 import { Hyperlink, RoundIconButton, MainContent } from 'storybook-nks/dist';
-import classes from './MainContent.css';
 import Logo from '../../assets/duff.png';
 import beersJson from '../../assets/beers.json';
 import IcoMoon from 'react-icomoon';
@@ -86,43 +85,6 @@ class Main extends Component {
         ];
 
         return (
-            /*             <div className={classes.MainContent}>
-                            <div>
-                                <Header
-                                    logo={Logo} />
-            
-                            </div>
-                            <div className={classes.Cards}>
-                                <Cards
-                                    beers={beersJson}
-                                    favoriteBeers={this.props.isFav}
-            
-                                    favoriteIconFull={<IcoMoon icon="star-full" color="orange" style={iconStyle} />}
-                                    favoriteIconEmpty={<IcoMoon icon="star-empty" color="orange" style={iconStyle} />}
-                                    clickedOnFavorites={(id) => this.addRemovefavoriteBeerHandler(id)}
-            
-            
-                                    addToCartIcon={<IcoMoon icon="plus" color="black" style={iconStyle} />}
-                                    clickedOnAddToCart={(id) => this.props.onAddToCart(id)}
-            
-                                    infoIcon={<IcoMoon icon="info" color="black" style={iconStyle} />}
-            
-                                // clickedOnInfo={action('clicked on info button')}
-                                // clickedOnSide={true}
-                                />
-                            </div>
-                            <div className={classes.NavigationMenu}>
-                                <NavigationMenu
-                                    data={navigationData}
-                                />
-                            </div>
-                            <div className={classes.Footer}>
-                                <Footer
-                                    data={footerData}
-                                />
-                            </div>
-            
-                        </div> */
             <MainContent
                 logo={Logo}
                 beers={beersJson}
@@ -140,7 +102,6 @@ class Main extends Component {
                 headerData={navigationData}
                 footerData={footerData}
             />
-
         );
     }
 }

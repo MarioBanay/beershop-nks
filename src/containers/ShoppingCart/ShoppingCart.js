@@ -9,14 +9,10 @@ import classes from './shoppingCart.css';
 class ShoppingCart extends Component {
 
     checkQuantityHandler = (qty, id) => {
-        console.log("from check quantity qty: " + qty.target.value);
-        console.log("from check quantity id: " + id);
         if (qty.target.value == 0) {
             this.props.onRemoveFromCart(id);
-            console.log("manje ili jednako 0");
         } else {
             this.props.onChangeQuantity(qty.target.value, id);
-            console.log("nije manje ili jednako 0")
         }
     }
 
@@ -82,15 +78,12 @@ class ShoppingCart extends Component {
             }
         ];
 
-
-        console.log("cartData polje: " + this.props.cart)
         return (
             <div className={classes.MainContent}>
                 <div className={classes.Header}>
                     <Header logo={Logo} />
                 </div>
-                {/*                 <SimpleTable favor={false} head={this.state.header} data={this.props.cart} />
- */}                <div className={classes.Table}>
+                <div className={classes.Table}>
                     <Table2
                         tableHeader={tableItems}
                         tableData={this.props.cart}
@@ -107,6 +100,7 @@ class ShoppingCart extends Component {
         );
     }
 }
+
 const mapStateToProps = state => {
     return {
         cart: state.fav.cartData,
