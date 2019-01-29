@@ -14,7 +14,10 @@ class ShoppingCart extends Component {
         console.log("from check quantity id: " + id);
         if (qty.target.value == 0) {
             this.props.onRemoveFromCart(id);
-            console.log("radi");
+            console.log("manje ili jednako 0");
+        } else {
+            this.props.onChangeQuantity(qty.target.value, id);
+            console.log("nije manje ili jednako 0")
         }
     }
 
@@ -75,7 +78,6 @@ class ShoppingCart extends Component {
             {
                 name: 'Quantity'
             },
-
             {
                 name: 'Remove'
             }
@@ -117,7 +119,8 @@ const mapStateToProps = state => {
 const mapDispatchToProps = dispatch => {
     return {
         onAddToCart: () => dispatch({ type: actionTypes.ADD_TO_CART }),
-        onRemoveFromCart: (id) => dispatch({ type: actionTypes.REMOVE_FROM_CART, resultElId: id })
+        onRemoveFromCart: (id) => dispatch({ type: actionTypes.REMOVE_FROM_CART, resultElId: id }),
+        onChangeQuantity: (qty, id) => dispatch({ type: actionTypes.CHANGE_QUANTITY, resultElId: id, quantity: qty })
     };
 };
 

@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import { Link } from 'react-router-dom';
-import { Header, NavigationMenu, Hyperlink, Footer, RoundIconButton, Cards } from 'storybook-nks/dist';
+import { Header, NavigationMenu, Hyperlink, Footer, RoundIconButton, Cards, MainContent } from 'storybook-nks/dist';
 import classes from './MainContent.css';
 import Logo from '../../assets/duff.png';
 import beersJson from '../../assets/beers.json';
@@ -13,7 +13,7 @@ const iconStyle = {
     height: '32px'
 };
 
-class MainContent extends Component {
+class Main extends Component {
 
     state = {
         icon: false
@@ -82,47 +82,65 @@ class MainContent extends Component {
                     icon={<IcoMoon icon="instagram" color="black" style={iconStyle} />}
                     link="https://instagram.com/" />
             }
-        
+
         ];
 
         return (
-            <div className={classes.MainContent}>
-                <div>
-                    <Header
-                        logo={Logo} />
+            /*             <div className={classes.MainContent}>
+                            <div>
+                                <Header
+                                    logo={Logo} />
+            
+                            </div>
+                            <div className={classes.Cards}>
+                                <Cards
+                                    beers={beersJson}
+                                    favoriteBeers={this.props.isFav}
+            
+                                    favoriteIconFull={<IcoMoon icon="star-full" color="orange" style={iconStyle} />}
+                                    favoriteIconEmpty={<IcoMoon icon="star-empty" color="orange" style={iconStyle} />}
+                                    clickedOnFavorites={(id) => this.addRemovefavoriteBeerHandler(id)}
+            
+            
+                                    addToCartIcon={<IcoMoon icon="plus" color="black" style={iconStyle} />}
+                                    clickedOnAddToCart={(id) => this.props.onAddToCart(id)}
+            
+                                    infoIcon={<IcoMoon icon="info" color="black" style={iconStyle} />}
+            
+                                // clickedOnInfo={action('clicked on info button')}
+                                // clickedOnSide={true}
+                                />
+                            </div>
+                            <div className={classes.NavigationMenu}>
+                                <NavigationMenu
+                                    data={navigationData}
+                                />
+                            </div>
+                            <div className={classes.Footer}>
+                                <Footer
+                                    data={footerData}
+                                />
+                            </div>
+            
+                        </div> */
+            <MainContent
+                logo={Logo}
+                beers={beersJson}
+                favoriteBeers={this.props.isFav}
 
-                </div>
-                <div className={classes.Cards}>
-                    <Cards
-                        beers={beersJson}
-                        favoriteBeers={this.props.isFav}
+                favoriteIconFull={<IcoMoon icon="star-full" color="orange" style={iconStyle} />}
+                favoriteIconEmpty={<IcoMoon icon="star-empty" color="orange" style={iconStyle} />}
+                clickedOnFavorites={(id) => this.addRemovefavoriteBeerHandler(id)}
 
-                        favoriteIconFull={<IcoMoon icon="star-full" color="orange" style={iconStyle} />}
-                        favoriteIconEmpty={<IcoMoon icon="star-empty" color="orange" style={iconStyle} />}
-                        clickedOnFavorites={(id) => this.addRemovefavoriteBeerHandler(id)}
+                addToCartIcon={<IcoMoon icon="plus" color="black" style={iconStyle} />}
+                clickedOnAddToCart={(id) => this.props.onAddToCart(id)}
 
+                infoIcon={<IcoMoon icon="info" color="black" style={iconStyle} />}
 
-                        addToCartIcon={<IcoMoon icon="plus" color="black" style={iconStyle} />}
-                        clickedOnAddToCart={(id) => this.props.onAddToCart(id)}
+                headerData={navigationData}
+                footerData={footerData}
+            />
 
-                        infoIcon={<IcoMoon icon="info" color="black" style={iconStyle} />}
-
-                    // clickedOnInfo={action('clicked on info button')}
-                    // clickedOnSide={true}
-                    />
-                </div>
-                <div className={classes.NavigationMenu}>
-                    <NavigationMenu
-                        data={navigationData}
-                    />
-                </div>
-                <div className={classes.Footer}>
-                    <Footer
-                        data={footerData}
-                    />
-                </div>
-
-            </div>
         );
     }
 }
@@ -144,4 +162,4 @@ const mapDispatchToProps = dispatch => {
     };
 };
 
-export default connect(mapStateToProps, mapDispatchToProps)(MainContent);
+export default connect(mapStateToProps, mapDispatchToProps)(Main);

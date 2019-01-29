@@ -53,7 +53,7 @@ const favoritesReducer = (state = initialState, action) => {
                         image: itemToAdd[0].image_url,
                         name: itemToAdd[0].name,
                         description: itemToAdd[0].description,
-                        qty: 1,
+                        quantity: 1,
                         button: crossIcon
                     });
 
@@ -72,7 +72,7 @@ const favoritesReducer = (state = initialState, action) => {
                             image: itemToAdd[0].image_url,
                             name: itemToAdd[0].name,
                             description: itemToAdd[0].description,
-                            qty: 1,
+                            quantity: 1,
                             button: crossIcon
                         })
                 }
@@ -85,6 +85,28 @@ const favoritesReducer = (state = initialState, action) => {
             return {
                 ...state,
                 cartData: newArray3
+            }
+
+        case actionTypes.CHANGE_QUANTITY:
+            console.log("u reduceru");
+            let indexOfEl = state.cartData.findIndex(item => item.id === action.resultElId);
+            let itemToChange = state.beerData.filter((el) => el.id === action.resultElId);
+            if (indexOfEl > -1) {
+                let baseCart = state.cartData.filter((el) => el.id !== action.resultElId);
+                baseCart.splice(indexOfEl, 0,
+                    {
+                        id: itemToChange[0].id,
+                        image: itemToChange[0].image_url,
+                        name: itemToChange[0].name,
+                        description: itemToChange[0].description,
+                        quantity: action.quantity,
+                        button: crossIcon
+                    });
+
+                return {
+                    ...state,
+                    cartData: baseCart
+                }
             }
 
         default:

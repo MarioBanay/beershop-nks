@@ -1,7 +1,6 @@
 import React, { Component } from 'react';
 import Logo from '../../assets/duff.png';
-import { Table, Header, NavigationMenu, Hyperlink } from 'storybook-nks/dist';
-import Footer from '../../components/Footer/Footer';
+import { Table2, Header, NavigationMenu, Hyperlink } from 'storybook-nks/dist';
 import { connect } from 'react-redux';
 import * as actionTypes from '../../store/actions';
 import { Link } from 'react-router-dom';
@@ -63,11 +62,12 @@ class Favorites extends Component {
                     <Header logo={Logo} />
                 </div>
                 <div className={classes.Table}>
-                    <Table 
-                    tableHeader={tableItems} 
-                    tableData={this.props.fav}
-                    clickedOnFavorites={(id) => this.props.onRemoveFromFavorites(id)} 
-                    />
+                    <Table2
+                        tableHeader={tableItems}
+                        tableData={this.props.fav}
+                        clickedOnFavorites={(id) => this.props.onRemoveFromFavorites(id)}
+                        quantity={true}
+                    /> 
                 </div>
                 <div className={classes.NavigationMenu}>
                     <NavigationMenu
