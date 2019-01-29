@@ -53,6 +53,7 @@ class Favorites extends Component {
                     <Header logo={Logo} />
                 </div>
                 <div className={classes.Table}>
+                    <h1>Favorite beers</h1>
                     <Table2
                         tableHeader={tableItems}
                         tableData={this.props.fav}

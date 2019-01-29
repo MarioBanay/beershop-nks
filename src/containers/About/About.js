@@ -1,8 +1,23 @@
 import React, { Component } from 'react';
+import { connect } from 'react-redux';
 import classes from './about.css';
+import { NavigationMenu, Hyperlink } from 'storybook-nks/dist';
+import { Link } from 'react-router-dom';
 
 class About extends Component {
+
     render() {
+        let navigationData = [
+            {
+                link: <Link to="/" >Home</Link>,
+            },
+            {
+                link: <Hyperlink
+                    link="https://github.com/MarioBanay/beershop-nks"
+                    text="Source Code" />
+            }
+        ];
+
         return (
             <div>
                 <table className={classes.aboutTable}>
@@ -36,6 +51,11 @@ class About extends Component {
                         <td>Mario Banay</td>
                     </tr>
                 </table>
+                <div className={classes.NavigationMenu}>
+                    <NavigationMenu
+                        data={navigationData}
+                    />
+                </div>
             </div>
         );
     }

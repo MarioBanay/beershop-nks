@@ -84,6 +84,7 @@ class ShoppingCart extends Component {
                     <Header logo={Logo} />
                 </div>
                 <div className={classes.Table}>
+                    <h1>Shopping cart</h1>
                     <Table2
                         tableHeader={tableItems}
                         tableData={this.props.cart}
